@@ -5,7 +5,8 @@ import string
 import requests
 import sqlite3
 import json
-conn = sqlite3.connect('data.db')
+from PIL import Image
+conn = sqlite3.connect('data.db')  #just for authentication
 c = conn.cursor()
 import hashlib
 def make_hashes(password):
@@ -56,6 +57,8 @@ def main():
                </div>
                """
     st.markdown(html_temp, unsafe_allow_html=True)
+    img = Image.open("bg.jfif")
+    st.image(img, width=697)
     menu = ["Home", "Login", "SignUp"]
     choice = st.sidebar.selectbox("Menu", menu)
     if choice == "Home":
