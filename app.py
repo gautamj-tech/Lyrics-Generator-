@@ -86,6 +86,7 @@ def main():
                     json_data = json.loads(response.content)
                     lyrics = json_data['lyrics']
                     st.text("{}".format(lyrics))
+		    st.balloons()
             else:
                 st.warning("Incorrect Username/Password")
     elif choice == "SignUp":
