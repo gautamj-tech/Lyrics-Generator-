@@ -60,7 +60,7 @@ def main():
     choice = st.sidebar.selectbox("Menu", menu)
     if choice == "Home":
         st.subheader("Home")
-        st.info("This Is a Email Detection Model Used to Detect Whether A Mail Recieved By The User Is Spam Or Ham.")
+        st.info("This Is a Lyrics Generator Model Login to Generate Lyrics")
         st.success("You Need To Sign Up to Access The Model")
     elif choice == "Login":
         st.subheader("Login Section")
