@@ -17,16 +17,7 @@ def check_hashes(password,hashed_text):
 	return False
 def create_usertable():
 	c.execute('CREATE TABLE IF NOT EXISTS userstable(username TEXT,password TEXT)')
-def create_spamtable():
-    c.execute('CREATE TABLE IF NOT EXISTS spamtable(username TEXT,spam INTEGER)')
-def create_hamtable():
-    c.execute('CREATE TABLE IF NOT EXISTS hamtable(username TEXT,message TEXT,ham INTEGER)')
-def add_spamdata(username,spam):
-	c.execute('INSERT INTO spamtable(username,spam) VALUES (?,?)',(username,spam))
-	conn.commit()
-def add_hamdata(username,message,ham):
-	c.execute('INSERT INTO hamtable(username,message,ham) VALUES (?,?,?)',(username,message,ham))
-	conn.commit()
+
 def add_userdata(username,password):
 	c.execute('INSERT INTO userstable(username,password) VALUES (?,?)',(username,password))
 	conn.commit()
@@ -41,14 +32,7 @@ def view_all_users():
 	c.execute('SELECT * FROM userstable')
 	data = c.fetchall()
 	return data
-def view_all_spam():
-	c.execute('SELECT * FROM spamtable')
-	data = c.fetchall()
-	return data
-def view_all_ham():
-	c.execute('SELECT * FROM hamtable')
-	data = c.fetchall()
-	return data
+
 def main():
     st.title("Built By Gautam Jain")
     html_temp = """
@@ -81,12 +65,12 @@ def main():
                 song = st.text_input("Title")
                 st.warning('Click Here To Check Your Results')
                 if st.button("click here"):
-                    url = "http://api.lyrics.ovh/v1/" + artist + '/' + song
-                    response = requests.get(url)
-                    json_data = json.loads(response.content)
-                    lyrics = json_data['lyrics']
-                    st.text("{}".format(lyrics))
-		    st.balloons()
+			url = "http://api.lyrics.ovh/v1/" + artist + '/' + song
+                        response = requests.get(url)
+                        json_data = json.loads(response.content)
+                        lyrics = json_data['lyrics']
+                        st.text("{}".format(lyrics))
+		        st.balloons()
             else:
                 st.warning("Incorrect Username/Password")
     elif choice == "SignUp":
